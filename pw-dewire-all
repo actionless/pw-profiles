@@ -1,6 +1,7 @@
 #!/bin/bash
+set -ueo pipefail
+
 while read -r line; do
 	echo "Dewiring: ${line}..."
-	echo pw-link -d "$line"
+	pw-link -d "$line" || true
 done < <(pw-cli dump short link | grep -Eo '^[0-9]+')
-#done < <(pw-cli dump short link {{!}} grep -Eo '^[0-9]+')
