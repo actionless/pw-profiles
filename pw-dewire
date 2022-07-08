@@ -1,0 +1,6 @@
+#!/bin/bash
+while read -r line; do
+	echo "Dewiring: ${line}..."
+	echo pw-link -d "$line"
+done < <(pw-cli dump short link | grep -Eo '^[0-9]+')
+#done < <(pw-cli dump short link {{!}} grep -Eo '^[0-9]+')

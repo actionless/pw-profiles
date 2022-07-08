@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ "$#" -ne 1 ]]; then
+	echo
+	echo 'usage: pw-loadwires filename'
+	echo
+	exit 0
+fi
+
+while IFS= read -r line; do
+	row0=$(echo "$line" | cut -d, -f1 | cut -d"'" -f2)
+	row1=$(echo "$line" | cut -d, -f2 | cut -d"'" -f2)
+	echo "Loading:  ${row0}  --> ${row1}..."
+	echo pw-link "$row0" "$row1"
+done < <(cat "$1")
