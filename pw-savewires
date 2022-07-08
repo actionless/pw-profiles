@@ -19,3 +19,4 @@ done < <(pw-cli dump short link)
 sort -u "$tempfile" > "$1"
 echo "Saved!"
 cat "$1"
+rm "$tempfile"
